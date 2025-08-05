@@ -1,0 +1,246 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+.performance-ui {
+  @apply bg-slate-800 flex justify-center items-start min-h-screen py-8 px-4;
+}
+
+.performance-container {
+  @apply bg-white rounded-2xl shadow-lg w-full max-w-md flex flex-col;
+  max-height: 90vh;
+}
+
+/* Header styles */
+.performance-header {
+  @apply flex items-center justify-between py-3 px-4 border-b border-slate-200;
+}
+
+.menu-button {
+  @apply p-2 rounded border border-slate-300 hover:border-slate-400 active:ring-2 active:ring-slate-400 transition;
+}
+
+.menu-icon {
+  @apply w-6 h-6 text-slate-700;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.logo-container {
+  @apply h-8 w-24 flex items-center justify-center select-none;
+}
+
+.logo {
+  @apply h-10 w-auto;
+}
+
+.header-controls {
+  @apply flex items-center space-x-4;
+}
+
+.toggle-switch {
+  @apply relative inline-flex items-center cursor-pointer;
+}
+
+.toggle-input {
+  @apply sr-only peer;
+}
+
+.toggle-track {
+  @apply w-12 h-6 bg-gray-400 rounded-full peer peer-focus:ring-2 peer-focus:ring-sky-400 peer-checked:bg-sky-500 transition;
+}
+
+.toggle-thumb {
+  @apply absolute left-1 top-1 bg-white border border-gray-300 rounded-full w-4 h-4 transition peer-checked:translate-x-6 peer-checked:border-sky-500;
+}
+
+.profile-image {
+  @apply rounded-full border-2 border-slate-300 shadow-sm object-cover w-10 h-10;
+}
+
+/* Main content styles */
+.performance-main {
+  @apply p-5 overflow-y-auto flex-grow;
+}
+
+.performance-section {
+  @apply mb-5 rounded-lg border border-slate-200 p-5 shadow-sm bg-white;
+}
+
+.section-header {
+  @apply flex flex-wrap items-center justify-between mb-5 gap-2;
+}
+
+.section-title {
+  @apply text-xl font-semibold text-slate-900 leading-none;
+}
+
+.section-note {
+  @apply text-sm text-red-600 italic font-semibold;
+}
+
+.update-info {
+  @apply flex flex-col items-end;
+}
+
+.update-label {
+  @apply text-sm italic text-slate-500 select-none;
+}
+
+.update-date {
+  @apply bg-slate-300 px-3 rounded-md select-none text-slate-800 font-semibold text-sm;
+}
+
+.export-button {
+  @apply inline-flex items-center rounded bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium py-2 px-4 shadow transition focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-1;
+}
+
+.export-icon {
+  @apply h-5 w-5 mr-2;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Regional section styles */
+.regional-section {
+  @apply mb-4;
+}
+
+.regional-title {
+  @apply text-lg font-semibold text-slate-900 mb-4;
+}
+
+.accordion-container {
+  @apply space-y-3;
+}
+
+.accordion-trigger {
+  @apply w-full text-left rounded-lg border border-slate-300 py-3 px-4 text-slate-900 font-semibold hover:bg-slate-50 flex justify-between items-center;
+}
+
+.accordion-trigger.active {
+  @apply border-slate-700 bg-slate-100 hover:bg-slate-200;
+}
+
+.accordion-icon {
+  @apply w-5 h-5 text-slate-700;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.accordion-icon.rotated {
+  @apply rotate-180;
+}
+
+.accordion-panel {
+  @apply border border-slate-200 rounded-md px-6 py-4 overflow-hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+  max-height: 0;
+}
+
+.accordion-panel.active {
+  @apply overflow-visible;
+  max-height: 1000px;
+}
+
+.accordion-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.accordion-panel::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 20px;
+}
+
+.accordion-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.panel-title {
+  @apply mb-4 font-semibold text-slate-900;
+}
+
+.metrics-grid {
+  @apply grid grid-cols-3 gap-x-3 gap-y-6 text-center text-slate-600 text-sm;
+}
+
+.metric-item {
+  @apply mb-1;
+}
+
+.metric-label {
+  @apply text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none;
+}
+
+.metric-value {
+  @apply rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium;
+}
+
+.metric-value.negative {
+  @apply font-semibold text-red-600;
+}
+
+.metric-item.full-width {
+  @apply col-span-3 text-center mt-2;
+}
+
+.panel-divider {
+  @apply border-slate-300 my-4;
+}
+
+/* Footer styles */
+.performance-footer {
+  @apply text-slate-900 border-t border-slate-200 p-4 bg-white flex flex-wrap items-center justify-between space-y-2 sm:space-y-0;
+}
+
+.footer-filters {
+  @apply flex items-center space-x-3 select-none;
+}
+
+.filter-icon {
+  @apply h-6 w-6 text-slate-700;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.filter-text {
+  @apply font-semibold;
+}
+
+.footer-info {
+  @apply flex flex-wrap items-center justify-between gap-4 gap-y-2 grow md:grow-0 md:justify-end;
+}
+
+.footer-title {
+  @apply text-lg font-semibold text-slate-900 leading-none;
+}
+
+.footer-note {
+  @apply text-sm text-red-600 italic font-semibold select-none;
+}
+
+/* Smooth slide toggle using max-height */
+[data-accordion-expanded="true"] {
+  max-height: 1000px;
+  transition: max-height 0.35s ease-in-out;
+}
+
+[data-accordion-expanded="false"] {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease-in-out;
+}
