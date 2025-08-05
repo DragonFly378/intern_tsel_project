@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Performance UI</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="script.js"></script>
+  <script src="./data.js"></script>
   <div id="accordion-container"></div>
   
   <style>
@@ -35,6 +35,24 @@
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.35s ease-in-out;
+    }
+
+    [data-accordion-expanded="false"] {
+    max-height: 0;
+   opacity: 0;
+   padding: 0 1.5rem; /* Padding horizontal saja */
+   margin-top: 0;
+   border-width: 0; /* Hilangkan border saat tertutup */
+    overflow: hidden;
+    transition: all 0.35s ease-in-out;
+    }
+    
+    /* Rotate icon animation */
+    .accordion-icon {
+      transition: transform 0.3s ease;
+    }
+    .accordion-icon.rotated {
+      transform: rotate(180deg);
     }
   </style>
 </head>
@@ -113,229 +131,34 @@
 
         <div id="accordion" class="space-y-3">
 
-          <button class="accordion-trigger w-full text-left rounded-lg border border-slate-300 py-3 px-4 text-slate-900 font-semibold hover:bg-slate-50 flex justify-between items-center" aria-expanded="true" aria-controls="panel-sumbagut" id="trigger-sumbagut" type="button">
+          <button class="accordion-trigger w-full text-left rounded-lg border border-slate-300 py-3 px-4 text-slate-900 font-semibold hover:bg-slate-50 flex justify-between items-center" aria-expanded="false" aria-controls="panel-sumbagut" id="trigger-sumbagut" type="button">
             SUMBAGUT
-            <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <svg class="accordion-icon w-5 h-5 text-slate-700" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
               <polyline points="6 9 12 15 18 9" />
             </svg>
           </button>
-          <div id="panel-western" role="region" aria-labelledby="trigger-western" class="accordion-panel border border-slate-200 rounded-md px-6 py-4 overflow-visible" data-accordion-expanded="true">
-            <div class="mb-4 font-semibold text-slate-900">Rev Total</div>
-            <div class="grid grid-cols-3 gap-x-3 gap-y-6 text-center text-slate-600 text-sm">
-              <div>
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">TARGET</div>
-                <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">-</div>
-              </div>
-              <div>
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">ACHV%</div>
-                <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">-</div>
-              </div>
-              <div>
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">MTD</div>
-                <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">9.45</div>
-              </div>
-              <div>
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">MOM%</div>
-                <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">1.29%</div>
-              </div>
-              <div>
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">YTD %</div>
-                <div class="rounded bg-slate-100 px-4 py-1 select-text font-semibold text-red-600">-10.00%</div>
-              </div>
-              <div>
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">YOY%</div>
-                <div class="rounded bg-slate-100 px-4 py-1 select-text font-semibold text-red-600">-2.58%</div>
-              </div>
-              <div class="col-span-3 text-center mt-2">
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">RANK YTD</div>
-                <div class="inline-block rounded bg-slate-100 px-6 py-1 select-text text-slate-900 font-semibold">7</div>
-              </div>
-            </div>
-
-            <hr class="border-slate-300 my-4" />
-
-            <div>
-              <div class="font-semibold text-slate-900 mb-2 select-none">Rev Existing</div>
-              <div class="grid grid-cols-3 gap-x-3 gap-y-4 text-center text-slate-600 text-sm">
-                <div>
-                  <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">TARGET</div>
-                  <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">-</div>
-                </div>
-                <div>
-                  <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">ACHV%</div>
-                  <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">-</div>
-                </div>
-                <div>
-                  <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">MTD</div>
-                  <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">9.45</div>
-                </div>
-                <div>
-                  <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">MOM%</div>
-                  <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium ">1.29%</div>
-                </div>
-                <div>
-                  <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">YTD %</div>
-                  <div class="rounded bg-slate-100 px-4 py-1 select-text font-semibold text-red-600">-10.00%</div>
-                </div>
-                <div>
-                  <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">YOY%</div>
-                  <div class="rounded bg-slate-100 px-4 py-1 select-text font-semibold text-red-600">-2.58%</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- <div id="panel-sumbagut" role="region" aria-labelledby="trigger-sumbagut" class="accordion-panel max-h-0 overflow-hidden px-6 py-3 border border-slate-200 rounded-md" data-accordion-expanded="false"></div> -->
+          <div id="panel-sumbagut" role="region" aria-labelledby="trigger-sumbagut" class="accordion-panel max-h-0 overflow-hidden px-6 py-3 border border-slate-200 rounded-md" data-accordion-expanded="false"></div>
 
           <button class="accordion-trigger w-full text-left rounded-lg border border-slate-300 py-3 px-4 text-slate-900 font-semibold hover:bg-slate-50 flex justify-between items-center" aria-expanded="false" aria-controls="panel-sumbagteng" id="trigger-sumbagteng" type="button">
             SUMBAGTENG
-            <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <svg class="accordion-icon w-5 h-5 text-slate-700" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
               <polyline points="6 9 12 15 18 9" />
             </svg>
           </button>
-          <div id="panel-western" role="region" aria-labelledby="trigger-western" class="accordion-panel border border-slate-200 rounded-md px-6 py-4 overflow-visible" data-accordion-expanded="true">
-            <div class="mb-4 font-semibold text-slate-900">Rev Total</div>
-            <div class="grid grid-cols-3 gap-x-3 gap-y-6 text-center text-slate-600 text-sm">
-              <div>
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">TARGET</div>
-                <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">-</div>
-              </div>
-              <div>
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">ACHV%</div>
-                <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">-</div>
-              </div>
-              <div>
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">MTD</div>
-                <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">9.45</div>
-              </div>
-              <div>
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">MOM%</div>
-                <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">1.29%</div>
-              </div>
-              <div>
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">YTD %</div>
-                <div class="rounded bg-slate-100 px-4 py-1 select-text font-semibold text-red-600">-10.00%</div>
-              </div>
-              <div>
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">YOY%</div>
-                <div class="rounded bg-slate-100 px-4 py-1 select-text font-semibold text-red-600">-2.58%</div>
-              </div>
-              <div class="col-span-3 text-center mt-2">
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">RANK YTD</div>
-                <div class="inline-block rounded bg-slate-100 px-6 py-1 select-text text-slate-900 font-semibold">7</div>
-              </div>
-            </div>
+          <div id="panel-sumbagteng" role="region" aria-labelledby="trigger-sumbagteng" class="accordion-panel max-h-0 overflow-hidden px-6 py-3 border border-slate-200 rounded-md" data-accordion-expanded="false"></div>
 
-            <hr class="border-slate-300 my-4" />
-
-            <div>
-              <div class="font-semibold text-slate-900 mb-2 select-none">Rev Existing</div>
-              <div class="grid grid-cols-3 gap-x-3 gap-y-4 text-center text-slate-600 text-sm">
-                <div>
-                  <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">TARGET</div>
-                  <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">-</div>
-                </div>
-                <div>
-                  <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">ACHV%</div>
-                  <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">-</div>
-                </div>
-                <div>
-                  <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">MTD</div>
-                  <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">9.45</div>
-                </div>
-                <div>
-                  <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">MOM%</div>
-                  <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium ">1.29%</div>
-                </div>
-                <div>
-                  <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">YTD %</div>
-                  <div class="rounded bg-slate-100 px-4 py-1 select-text font-semibold text-red-600">-10.00%</div>
-                </div>
-                <div>
-                  <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">YOY%</div>
-                  <div class="rounded bg-slate-100 px-4 py-1 select-text font-semibold text-red-600">-2.58%</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- <div id="panel-sumbagteng" role="region" aria-labelledby="trigger-sumbagteng" class="accordion-panel max-h-0 overflow-hidden px-6 py-3 border border-slate-200 rounded-md" data-accordion-expanded="false"></div> -->
-
-          <button class="accordion-trigger w-full text-left rounded-lg border border-slate-300 py-3 px-4 text-slate-900 font-semibold hover:bg-slate-50 flex justify-between items-center" aria-expanded="true" aria-controls="panel-sumbagsel" id="trigger-sumbagsel" type="button">
+          <button class="accordion-trigger w-full text-left rounded-lg border border-slate-300 py-3 px-4 text-slate-900 font-semibold hover:bg-slate-50 flex justify-between items-center" aria-expanded="false" aria-controls="panel-sumbagsel" id="trigger-sumbagsel" type="button">
             SUMBAGSEL
-            <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <svg class="accordion-icon w-5 h-5 text-slate-700" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
               <polyline points="6 9 12 15 18 9" />
             </svg>
           </button>
-          <div id="panel-western" role="region" aria-labelledby="trigger-western" class="accordion-panel border border-slate-200 rounded-md px-6 py-4 overflow-visible" data-accordion-expanded="true">
-            <div class="mb-4 font-semibold text-slate-900">Rev Total</div>
-            <div class="grid grid-cols-3 gap-x-3 gap-y-6 text-center text-slate-600 text-sm">
-              <div>
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">TARGET</div>
-                <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">-</div>
-              </div>
-              <div>
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">ACHV%</div>
-                <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">-</div>
-              </div>
-              <div>
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">MTD</div>
-                <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">9.45</div>
-              </div>
-              <div>
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">MOM%</div>
-                <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">1.29%</div>
-              </div>
-              <div>
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">YTD %</div>
-                <div class="rounded bg-slate-100 px-4 py-1 select-text font-semibold text-red-600">-10.00%</div>
-              </div>
-              <div>
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">YOY%</div>
-                <div class="rounded bg-slate-100 px-4 py-1 select-text font-semibold text-red-600">-2.58%</div>
-              </div>
-              <div class="col-span-3 text-center mt-2">
-                <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">RANK YTD</div>
-                <div class="inline-block rounded bg-slate-100 px-6 py-1 select-text text-slate-900 font-semibold">7</div>
-              </div>
-            </div>
-
-            <hr class="border-slate-300 my-4" />
-
-            <div>
-              <div class="font-semibold text-slate-900 mb-2 select-none">Rev Existing</div>
-              <div class="grid grid-cols-3 gap-x-3 gap-y-4 text-center text-slate-600 text-sm">
-                <div>
-                  <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">TARGET</div>
-                  <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">-</div>
-                </div>
-                <div>
-                  <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">ACHV%</div>
-                  <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">-</div>
-                </div>
-                <div>
-                  <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">MTD</div>
-                  <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">9.45</div>
-                </div>
-                <div>
-                  <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">MOM%</div>
-                  <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium ">1.29%</div>
-                </div>
-                <div>
-                  <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">YTD %</div>
-                  <div class="rounded bg-slate-100 px-4 py-1 select-text font-semibold text-red-600">-10.00%</div>
-                </div>
-                <div>
-                  <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">YOY%</div>
-                  <div class="rounded bg-slate-100 px-4 py-1 select-text font-semibold text-red-600">-2.58%</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- <div id="panel-sumbagsel" role="region" aria-labelledby="trigger-sumbagsel" class="accordion-panel max-h-0 overflow-hidden px-6 py-3 border border-slate-200 rounded-md" data-accordion-expanded="false"></div> -->
+          <div id="panel-sumbagsel" role="region" aria-labelledby="trigger-sumbagsel" class="accordion-panel max-h-0 overflow-hidden px-6 py-3 border border-slate-200 rounded-md" data-accordion-expanded="false"></div>
         
 
           <button class="accordion-trigger w-full text-left rounded-lg border border-slate-700 bg-slate-100 py-3 px-4 text-slate-900 font-semibold hover:bg-slate-200 flex justify-between items-center" aria-expanded="true" aria-controls="panel-western" id="trigger-western" type="button">
             WESTERN JABOTABEK
-            <svg class="w-5 h-5 text-slate-700 " fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <svg class="accordion-icon w-5 h-5 text-slate-700 rotated" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
               <polyline points="6 9 12 15 18 9" />
             </svg>
           </button>
@@ -407,6 +230,7 @@
 
         </div>
       </section>
+    
     </main>
 
     <!-- FOOTER -->
@@ -440,31 +264,165 @@
 
   </div>
    
-
-  <script>
-  document.querySelectorAll('.accordion-trigger').forEach(button => {
-    button.addEventListener('click', () => {
-      const panelId = button.getAttribute('aria-controls');
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Mendapatkan semua tombol accordion
+    const accordionTriggers = document.querySelectorAll('.accordion-trigger');
+    
+    // Menambahkan event listener untuk setiap tombol accordion
+    accordionTriggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        // Mendapatkan status expanded saat ini
+        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+        
+        // Toggle status expanded
+        trigger.setAttribute('aria-expanded', !isExpanded);
+        
+        // Mendapatkan panel yang terkait dengan tombol
+        const panelId = trigger.getAttribute('aria-controls');
+        const panel = document.getElementById(panelId);
+        
+        // Toggle status expanded pada panel
+        panel.setAttribute('data-accordion-expanded', !isExpanded);
+        
+        // Toggle icon rotation
+        const icon = trigger.querySelector('.accordion-icon');
+        if (icon) {
+          icon.classList.toggle('rotated');
+        }
+        
+        // Jika panel sedang dibuka, isi dengan data
+        if (!isExpanded) {
+          const regionName = trigger.textContent.trim();
+          fillPanelWithData(panelId, regionName);
+        }
+      });
+    });
+    
+    // Fungsi untuk mengisi panel dengan data
+    function fillPanelWithData(panelId, regionName) {
       const panel = document.getElementById(panelId);
-      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      const regionData = regionalData[regionName];
+      
+      if (!regionData) return;
+      
+      // Template untuk data regional
+      const template = `
+        <div class="mb-4 font-semibold text-slate-900">Rev Total</div>
+        <div class="grid grid-cols-3 gap-x-3 gap-y-6 text-center text-slate-600 text-sm">
+          <div>
+            <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">TARGET</div>
+            <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">${regionData.revTotal.target}</div>
+          </div>
+          <div>
+            <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">ACHV%</div>
+            <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">${regionData.revTotal.achv}</div>
+          </div>
+          <div>
+            <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">MTD</div>
+            <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">${regionData.revTotal.mtd}</div>
+          </div>
+          <div>
+            <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">MOM%</div>
+            <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">${regionData.revTotal.mom}</div>
+          </div>
+          <div>
+            <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">YTD %</div>
+            <div class="rounded bg-slate-100 px-4 py-1 select-text font-semibold ${parseFloat(regionData.revTotal.ytd) < 0 ? 'text-red-600' : 'text-green-600'}">${regionData.revTotal.ytd}</div>
+          </div>
+          <div>
+            <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">YOY%</div>
+            <div class="rounded bg-slate-100 px-4 py-1 select-text font-semibold ${parseFloat(regionData.revTotal.yoy) < 0 ? 'text-red-600' : 'text-green-600'}">${regionData.revTotal.yoy}</div>
+          </div>
+          <div class="col-span-3 text-center mt-2">
+            <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">RANK YTD</div>
+            <div class="inline-block rounded bg-slate-100 px-6 py-1 select-text text-slate-900 font-semibold">${regionData.revTotal.rank}</div>
+          </div>
+        </div>
 
-      // Toggle aria-expanded
-      button.setAttribute('aria-expanded', !isExpanded);
+        <hr class="border-slate-300 my-4" />
 
-      // Toggle panel visibility
-      if (isExpanded) {
-        panel.classList.add('hidden');
-      } else {
-        panel.classList.remove('hidden');
+        <div>
+          <div class="font-semibold text-slate-900 mb-2 select-none">Rev Existing</div>
+          <div class="grid grid-cols-3 gap-x-3 gap-y-4 text-center text-slate-600 text-sm">
+            <div>
+              <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">TARGET</div>
+              <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">${regionData.revExisting.target}</div>
+            </div>
+            <div>
+              <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">ACHV%</div>
+              <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">${regionData.revExisting.achv}</div>
+            </div>
+            <div>
+              <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">MTD</div>
+              <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">${regionData.revExisting.mtd}</div>
+            </div>
+            <div>
+              <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">MOM%</div>
+              <div class="rounded bg-slate-100 px-4 py-1 select-text text-slate-900 font-medium">${regionData.revExisting.mom}</div>
+            </div>
+            <div>
+              <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">YTD %</div>
+              <div class="rounded bg-slate-100 px-4 py-1 select-text font-semibold ${parseFloat(regionData.revExisting.ytd) < 0 ? 'text-red-600' : 'text-green-600'}">${regionData.revExisting.ytd}</div>
+            </div>
+            <div>
+              <div class="text-xs text-slate-400 mb-1 uppercase font-bold tracking-wide select-none">YOY%</div>
+              <div class="rounded bg-slate-100 px-4 py-1 select-text font-semibold ${parseFloat(regionData.revExisting.yoy) < 0 ? 'text-red-600' : 'text-green-600'}">${regionData.revExisting.yoy}</div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      panel.innerHTML = template;
+    }
+    
+    // Mengisi regional-container dengan data dari regionalData
+    const regionalContainer = document.getElementById('regional-container');
+    
+    // Membuat kartu untuk setiap region
+    Object.keys(regionalData).forEach(regionName => {
+      const regionData = regionalData[regionName];
+      const card = document.createElement('div');
+      card.className = 'bg-white rounded-lg border border-slate-200 p-4 shadow-sm';
+      
+      card.innerHTML = `
+        <div class="flex justify-between items-center mb-3">
+          <h4 class="font-semibold text-slate-900">${regionName}</h4>
+          <span class="text-xs font-medium px-2 py-1 rounded ${regionData.revTotal.rank <= 3 ? 'bg-green-100 text-green-800' : 'bg-slate-100 text-slate-700'}">Rank #${regionData.revTotal.rank}</span>
+        </div>
+        <div class="grid grid-cols-2 gap-2 text-sm">
+          <div>
+            <span class="text-slate-500">MTD:</span>
+            <span class="font-medium text-slate-900">${regionData.revTotal.mtd}</span>
+          </div>
+          <div>
+            <span class="text-slate-500">YTD:</span>
+            <span class="font-medium ${parseFloat(regionData.revTotal.ytd) < 0 ? 'text-red-600' : 'text-green-600'}">${regionData.revTotal.ytd}</span>
+          </div>
+          <div>
+            <span class="text-slate-500">MoM:</span>
+            <span class="font-medium ${parseFloat(regionData.revTotal.mom) < 0 ? 'text-red-600' : 'text-green-600'}">${regionData.revTotal.mom}</span>
+          </div>
+          <div>
+            <span class="text-slate-500">YoY:</span>
+            <span class="font-medium ${parseFloat(regionData.revTotal.yoy) < 0 ? 'text-red-600' : 'text-green-600'}">${regionData.revTotal.yoy}</span>
+          </div>
+        </div>
+      `;
+      
+      regionalContainer.appendChild(card);
+    });
+    
+    // Inisialisasi panel yang sudah terbuka
+    document.querySelectorAll('[data-accordion-expanded="true"]').forEach(panel => {
+      const triggerId = panel.getAttribute('aria-labelledby');
+      const trigger = document.getElementById(triggerId);
+      if (trigger) {
+        const regionName = trigger.textContent.trim();
+        fillPanelWithData(panel.id, regionName);
       }
-
-      // Toggle icon rotation
-      const icon = button.querySelector('svg');
-      icon.classList.toggle('rotate-180', !isExpanded);
     });
   });
 </script>
-
 </body>
 </html>
-
